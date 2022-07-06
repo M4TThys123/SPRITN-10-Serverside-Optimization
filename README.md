@@ -1,27 +1,99 @@
-> _Fork_ deze leertaak en ga aan de slag. Onderstaande outline ga je gedurende deze taak in jouw eigen GitHub omgeving uitwerken. De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
+# 🚧 Performance optimalisatie Coding the Curbs
+![Screenshot Prototype](https://github.com/M4TThys123/SPRINT-10-Coding-the-Curbs/blob/main/assets/Schermafbeelding%202022-07-06%20om%2014.35.59.png)
 
-# Titel
-Geef je project een titel en schrijf in één zin wat het is.
+## Beschrijving
+Deze website is serverside gemaakt via NPM en is gedeployd via Heroku. Om deze website te verbeteren ben ik daarom ook begonnen om deze serverside te optimaliseren. Vervolgens ben ik clientside aan de gang gegaan.
 
-## Serverside Performance Optimalisatie
-Beschrijf de website die je hebt geoptimaliseerd, voeg screenshots van de performance audit voor en na het uitvoeren en beschrijf de verbeterde performance. Met andere woorden, welke winst heb je behaald door dit allemaal te doen! Voeg de url en een screenshot van de geoptimaliseerde website toe. 
+## 🚀 Lighthouse test voor optimalisatie
+![Screenshot Prototype](https://github.com/M4TThys123/SPRINT-10-Coding-the-Curbs/blob/main/assets/before.png)
 
-### Minifying
-Beschrijf welke bestanden je _minified_ hebt en waarom je dat gedaan hebt. Als je er bewust voor kiest bepaalde bestanden niet te minify-en dan beschrijf je ook waarom je dat niet gedaan hebt.
+## Lighthouse test na optimalisatie
+![Screenshot Prototype](https://github.com/M4TThys123/SPRINT-10-Coding-the-Curbs/blob/main/assets/coding-max.png)
+
+## Optimalisatie
+###Minifying
+Ik heb de NPM package PostCSS geinstaleerd om de CSS te minifyen.
 
 ### Code splitting
-Beschrijf welke front-end javascript bestanden je gesplit hebt en waarom je dat gedaan hebt. Schrijf vanuit het idee van daadwerkelijk gebruikte code per pagina.
-
-### Caching
-Beschrijf welke caching opties je gekozen hebt en waarom je dat op deze manier doet.
+Ik heb gebruik gemaakt van een simpele express server en er lade geen overige pagina's. Daarom was code splitting n.v.t.
 
 ### Compressie
-Beschrijf hoe je compressie hebt ingezet en waarom je die keuze hebt gemaakt.
+Ik heb de NPM package express comporessine geinstaleerd om de CSS te minifyen.
 
-## Bronnen
-Beschrijf de door jou gebruikte bronnen om bovenstaande stappen uit te voeren.
+## Afbeeldingen
 
-## Licentie
+
+### Squoosh 
+Met squoosh heb ik mijn afbeeldingen gemainpuleert, ik heb ze gexporteerd als avif webp.
+
+
+### Lazy loading
+```HTML
+<picture>
+  <source srcset="image.avif" type="image/avif">
+  <source srcset="image.webp" type="image/webp">
+  <img src="image.jpg" alt="Photo" width="450" height="350">
+</picture>
+
+<picture>
+<source
+  sizes="(max-width: 608px) 100vw, 608px"
+  srcset="
+    /img/Z1s3TKV-1920w.avif 1920w,
+    /img/Z1s3TKV-1280w.avif 1280w,
+    /img/Z1s3TKV-640w.avif   640w,
+    /img/Z1s3TKV-320w.avif   320w"
+  type="image/avif"
+/>
+<source
+  sizes="(max-width: 608px) 100vw, 608px"
+  srcset="
+    /img/Z1s3TKV-1920w.webp 1920w,
+    /img/Z1s3TKV-1280w.webp 1280w,
+    /img/Z1s3TKV-640w.webp   640w,
+    /img/Z1s3TKV-320w.webp   320w"
+  type="image/webp"
+/>
+<source
+  sizes="(max-width: 608px) 100vw, 608px"
+  srcset="
+    /img/Z1s3TKV-1920w.jpg 1920w,
+    /img/Z1s3TKV-1280w.jpg 1280w,
+    /img/Z1s3TKV-640w.jpg   640w,
+    /img/Z1s3TKV-320w.jpg   320w"
+  type="image/jpeg"
+/>
+  <img src="fallback-image.jpg" alt="Photo" width="450" height="350">
+</picture>
+```
+
+### Lazy loading
+```HTML
+<img loading="lazy" src="./afb1" alt="afb1_placeholer">
+```
+
+## 👉 Kenmerken
+
+### 💻 Client-Side
+  * 🧭 HTML
+  * 🏦 CSS
+  * 🏥 JavaScript
+  
+### 💾 Server-Side
+ * [🏛️ Node.js](https://nodejs.dev/)
+ * [🚣 Express](https://www.npmjs.com/package/express)
+
+### ‼️ Dependencies
+ * [🏡 Ejs](https://www.npmjs.com/package/ejs)
+ * [📹 Compression](https://www.npmjs.com/package/compression)
+ * [🖥️ Cssnano](https://www.npmjs.com/package/cssnano)
+ * [💤 Postcss](https://www.npmjs.com/package/postcss)
+
+## 🌐 Bronnen
+* [Lazy Loading](https://web.dev/browser-level-image-lazy-loading/)
+* [Lazy Loading](https://web.dev/browser-level-image-lazy-loading/)
+
+## 🔒 Licentie
 
 ![GNU GPL V3](https://www.gnu.org/graphics/gplv3-127x51.png)
 
