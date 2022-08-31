@@ -11,17 +11,65 @@ Deze website is serverside gemaakt via NPM en is gedeployd via Heroku. Om deze w
 ![Screenshot Prototype](https://github.com/M4TThys123/SPRINT-10-Coding-the-Curbs/blob/main/assets/coding-max.png)
 
 ## Optimalisatie
-###Minifying
-Ik heb de NPM package PostCSS geinstaleerd om de CSS te minifyen.
+### Minifying
+Ik ga gebruikmaken van ```PostCSS``` om gemakkelijk CSS code te verkleinen. Als eerste gaan we de juiste NPM packages installeren.
+
+```
+npm install postcss cssnano autoprefixer
+```
+```CSSnano```  en ```autoprefixer``` zijn plugins voor ```PostCSS``` die vertellen hoe de CSS gemanipuleerd moet worden.
+ * ```CSSnano``` Package komt met ingebouwede technieken om CSS kleiner te maken.
+ *  ```autoprefixer``` voegt de -webkit- of -moz-prefixen toe waar nodig om uw CSS compatibel te maken met alle browsers.
+
+Dit is de code om de NPM Packages te gebruiken
+```JavaScript
+const postcss = require('postcss')
+const cssnano = require('cssnano')
+const autoprefixer = require('autoprefixer')
+
+// Wrapped in a function so we can use async/await
+const minifyCss = async () => {
+  // This CSS might be imported from a file, or anywhere else
+  const css = `
+    * {
+      font-family: system-ui;
+    }
+  `
+
+  // We pass in an array of the plugins we want to use: `cssnano` and `autoprefixer`
+  const output = await postcss([cssnano, autoprefixer])
+    .process(css)
+
+  // The `css` property of `output` is the minified CSS as a string
+  const minifiedCss = output.css
+}
+
+minifyCss()
+```
+
+Voeg het ```minify``` script toe aan het ```package.json``` file
+```JSON
+"scripts": {
+    "minify": "node ./scripts/minify.js",
+  },
+```
+Daarna kun je het bestand via de terminal minify'en door:
+```
+npm run minify
+```
 
 ### Code splitting
 Ik heb gebruik gemaakt van een simpele express server en er lade geen overige pagina's. Daarom was code splitting n.v.t.
 
+
+
 ### Compressie
 Ik heb de NPM package express comporessine geinstaleerd om de CSS te minifyen.
 
-## Afbeeldingen
+### Cage Controll Headers
 
+
+## Afbeeldingen
 
 ### Squoosh 
 Met squoosh heb ik mijn afbeeldingen gemainpuleert, ik heb ze gexporteerd als avif webp.
